@@ -26,6 +26,8 @@ This project was done with the following technologies, frameworks and libraries.
 
 * [Vite.js](https://vitejs.dev/)
 * [React.js](https://reactjs.org/)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [Heroicons](https://heroicons.com/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
