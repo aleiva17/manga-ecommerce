@@ -1,12 +1,25 @@
+import ItemCard from './ItemCard'
+import IProducts from '../services/IProducts'
 
-interface IItemsListContainer {
-  greetings: string
+interface IItemListContainer {
+  products: IProducts[],
+  addProduct: Function
 }
 
-const ItemListContainer = ({ greetings }: IItemsListContainer) => {
-  
+const ItemListContainer = ({ products, addProduct }:IItemListContainer) => {
   return (
-    <h1 className="text-center text-5xl font-semibold my-12">{ greetings }</h1>
+    <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 mx-12 mb-12'>
+      {
+        products.map(product => <ItemCard 
+            key={product.id} 
+            name={product.name} 
+            imgUrl={product.imgUrl} 
+            stock={product.stock} 
+            price={product.price}
+            addProductToCart={ addProduct } 
+        />)
+      }
+    </div>
   )
 }
 

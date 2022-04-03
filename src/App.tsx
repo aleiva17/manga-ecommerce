@@ -1,10 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ItemListContainer from './components/sections/ItemListContainer'
-import ItemCount from './components/sections/ItemCount'
+import ProductsFetch from './components/services/ProductsFetch'
+import IProducts from './components/services/IProducts'
 import Header from './components/layout/Header/Header'
+import Loader from './components/sections/Loader'
 
 const App = () => {
   const [quantityProducts, setQuantityProducts] = useState(0)
+  const [products, setProducts] = useState<IProducts[] | undefined>();
+
+  useEffect(() => {
+    ProductsFetch.getProducts().then(prods => {
+      setProducts(prods)
+    })
+  }, [])
 
   const handleAddProduct = (cant: number) => {
     setQuantityProducts(quantityProducts + cant)
@@ -13,10 +22,12 @@ const App = () => {
   return (
     <>
       <Header quantityProducts={ quantityProducts } />
-      <ItemListContainer greetings={ 'Nuestros productos' } />
-      <div className='flex justify-center'>
-        <ItemCount name="Steel Ball Run 01" imgUrl="http://www.editorialivrea.com/ESP/jojosbizarreadventure/jojo7-steelballrun01.jpg" stock={ 10 } addProductToCart={ handleAddProduct } />
-      </div>
+      <h1 className='text-center text-5xl font-semibold my-12'>Nuestros productos</h1>
+      {
+        products !== undefined ?
+          <ItemListContainer products={products} addProduct={ handleAddProduct } /> :
+          <Loader />
+      }
     </>
   )
 }
