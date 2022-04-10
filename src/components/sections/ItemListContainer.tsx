@@ -1,8 +1,8 @@
 import ItemCard from './ItemCard'
-import IProducts from '../services/IProducts'
+import IDetailProducts from '../services/IDetailProducts'
 
 interface IItemListContainer {
-  products: IProducts[],
+  products: IDetailProducts[],
   addProduct: Function
 }
 
