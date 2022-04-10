@@ -6,7 +6,7 @@ const ItemDetail = ({ id, name, imgUrl, stock, price, category, author, descript
       <h1 className="text-3xl font-bold text-center my-4">{ name }</h1>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex justify-center md:justify-end">
-          <img src={imgUrl} alt={name} />
+          <img className="max-w-[400px]" src={imgUrl} alt={name} />
         </div>
         <div className="flex flex-col justify-start gap-4">
           <p className="text-lg"><span className="font-bold">Precio:</span> ${price}</p>

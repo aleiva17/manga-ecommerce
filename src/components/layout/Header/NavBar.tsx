@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { NavLink } from 'react-router-dom'
 
 interface INavBar {
   isMobile: boolean
@@ -15,8 +16,9 @@ const NavBar = ({ isMobile }: INavBar) => {
 
   return (
     <>
-      <a href="#" className={ navStyle }>Mangas</a>
-      <a href="#" className={ navStyle } >Novelas Ligeras</a>
+      <NavLink to="/" className={ navStyle }>Inicio</NavLink>
+      <NavLink to="/category/mangas" className={ navStyle }>Mangas</NavLink>
+      <NavLink to="/category/novelas" className={ navStyle }>Novelas Ligeras</NavLink>
     </>
   )
 }

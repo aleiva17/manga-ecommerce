@@ -25,8 +25,9 @@ This project aims to be an e-commerce base project with [React.js](https://react
 This project was done with the following technologies, frameworks and libraries.
 
 * [Vite.js](https://vitejs.dev/)
-* [React.js](https://reactjs.org/)
 * [Tailwind CSS](https://tailwindcss.com/)
+* [React.js](https://reactjs.org/)
+* [React Router](https://reactrouter.com/)
 * [Heroicons](https://heroicons.com/)
 
 <!-- GETTING STARTED -->

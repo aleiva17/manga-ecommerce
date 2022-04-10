@@ -1,7 +1,7 @@
 import IProducts from './IProducts'
 
 interface IDetailProducts extends IProducts {
-  category: "manga" | "light novel",
+  category: string,
   author: string,
   description: string
 }
