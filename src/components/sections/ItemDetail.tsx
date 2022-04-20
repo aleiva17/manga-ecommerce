@@ -1,11 +1,21 @@
-import { useState } from "react"
-import ItemCount from "./ItemCount"
-import IDetailProducts from "../services/IDetailProducts"
+import { useState, useContext } from "react"
 import { Link } from "react-router-dom"
+import ItemCount from "./ItemCount"
+import IDetailProducts from "../../services/IDetailProducts"
+import ICartProducts from "../../services/ICartProducts"
+import CartContext from "../../context/CartContext"
 
 const ItemDetail = ({ id, name, imgUrl, stock, price, category, author, description }: IDetailProducts) => {
   const [quantity, setQuantity] = useState(0)
-  
+  const cartContext = useContext(CartContext)
+
+  const handleBuy = () => {
+    const product = {
+      id, name, imgUrl, stock, price, category, author, description
+    }
+    cartContext?.addItem({...product, quantityToBuy: quantity})
+  }
+
   const onAdd = (quantityToAdd: number) => {
     setQuantity(quantityToAdd)
   }
@@ -14,7 +24,7 @@ const ItemDetail = ({ id, name, imgUrl, stock, price, category, author, descript
     <>
       <h1 className="text-3xl font-bold text-center my-4">{ name }</h1>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="flex justify-center md:justify-end">
+        <div className="flex justify-center md:justify-end max-h-[720px]">
           <img className="object-contain" src={imgUrl} alt={name} /> 
         </div>
         <div className="flex flex-col justify-start gap-4">
@@ -32,7 +42,7 @@ const ItemDetail = ({ id, name, imgUrl, stock, price, category, author, descript
             <div className="flex flex-col items-center md:items-start gap-2 w-full mb-4">
               <ItemCount onAdd={onAdd} quantity={quantity} stock={stock} />
               {
-                quantity > 0 && <Link to="/cart" className="bg-indigo-600 hover:bg-indigo-500 text-white rounded-md py-1 px-4 transition duration-300 w-4/5 md:w-3/5 text-center">Comprar Ahora</Link>
+                quantity > 0 && <Link to="/cart" onClick={handleBuy} className="bg-indigo-600 hover:bg-indigo-500 text-white rounded-md py-1 px-4 transition duration-300 w-4/5 md:w-3/5 text-center">Comprar Ahora</Link>
               }
             </div>
           </div>

@@ -1,11 +1,19 @@
 import CartWidget from "./CartWidget"
 import NavBar from "./NavBar"
-import { useState } from "react"
+import { useState, useContext, useEffect } from "react"
 import { Link } from 'react-router-dom'
+import CartContext from "../../../context/CartContext"
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
   const [quantityProducts, setQuantityProducts] = useState(0)
+  const cartContext = useContext(CartContext)
+
+  useEffect(() => {
+    let cant = cartContext?.getQuantity();
+    cant == null && (cant = 0);
+    setQuantityProducts(cant)
+  }, [cartContext?.cart])
 
   const handleMobileBtn = () => {
     setMobileMenu(!mobileMenu)

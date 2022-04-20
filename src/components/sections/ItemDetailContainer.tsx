@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import IDetailProducts from '../services/IDetailProducts'
-import ProductsFetch from '../services/ProductsFetch'
+import IDetailProducts from '../../services/IDetailProducts'
+import ProductsFetch from '../../services/ProductsFetch'
 import Loader from './Loader'
 import ItemDetail from './ItemDetail'
 import { useParams } from 'react-router-dom'
