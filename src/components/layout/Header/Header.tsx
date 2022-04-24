@@ -47,7 +47,9 @@ const Header = () => {
           </div>
           {/* RIGHT SIDE */}
           <div className="flex items-center space-x-1">
-            <CartWidget quantity={ quantityProducts } />
+            {
+              quantityProducts > 0 && <CartWidget quantity={ quantityProducts } />
+            }
           </div>
         </div>
       </div>

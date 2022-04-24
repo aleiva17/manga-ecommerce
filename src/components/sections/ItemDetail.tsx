@@ -2,7 +2,6 @@ import { useState, useContext } from "react"
 import { Link } from "react-router-dom"
 import ItemCount from "./ItemCount"
 import IDetailProducts from "../../services/IDetailProducts"
-import ICartProducts from "../../services/ICartProducts"
 import CartContext from "../../context/CartContext"
 
 const ItemDetail = ({ id, name, imgUrl, stock, price, category, author, description }: IDetailProducts) => {
@@ -14,6 +13,7 @@ const ItemDetail = ({ id, name, imgUrl, stock, price, category, author, descript
       id, name, imgUrl, stock, price, category, author, description
     }
     cartContext?.addItem({...product, quantityToBuy: quantity})
+    setQuantity(0);
   }
 
   const onAdd = (quantityToAdd: number) => {
@@ -42,7 +42,12 @@ const ItemDetail = ({ id, name, imgUrl, stock, price, category, author, descript
             <div className="flex flex-col items-center md:items-start gap-2 w-full mb-4">
               <ItemCount onAdd={onAdd} quantity={quantity} stock={stock} />
               {
-                quantity > 0 && <Link to="/cart" onClick={handleBuy} className="bg-indigo-600 hover:bg-indigo-500 text-white rounded-md py-1 px-4 transition duration-300 w-4/5 md:w-3/5 text-center">Comprar Ahora</Link>
+                quantity > 0 && (
+                  <>
+                    <button onClick={ handleBuy } className="bg-yellow-500 hover:bg-yellow-400 text-white rounded-md py-1 px-4 transition duration-300 w-4/5 md:w-3/5 text-center">Agregar al carrito</button>
+                    <Link to="/cart" onClick={ handleBuy } className="bg-indigo-600 hover:bg-indigo-500 text-white rounded-md py-1 px-4 transition duration-300 w-4/5 md:w-3/5 text-center">Comprar Ahora</Link>
+                  </>
+                )
               }
             </div>
           </div>

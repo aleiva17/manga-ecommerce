@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import ItemListContainer from './components/sections/ItemListContainer'
 import Header from './components/layout/Header/Header'
 import ItemDetailContainer from './components/sections/ItemDetailContainer'
+import Cart from './components/pages/Cart';
 import NotFound from './components/pages/NotFound';
 import { CartContextProvider } from "./context/CartContext";
 
@@ -14,6 +15,7 @@ const App = () => {
             <Route path='/'element={ <ItemListContainer /> } />
             <Route path='/category/:id' element={ <ItemListContainer /> } />
             <Route path='/item/:id' element={ <ItemDetailContainer /> } />
+            <Route path='/cart' element= { <Cart /> } />
             <Route path='*' element={ <NotFound /> } />
         </Routes>
       </CartContextProvider>

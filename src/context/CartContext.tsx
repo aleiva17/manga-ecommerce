@@ -13,6 +13,7 @@ type CartContextType = {
   clear: () => void
   isInCart: (id: number) => boolean
   removeItem: (id: number) => void
+  getTotal: () => number
 }
 
 const CartContext = createContext<CartContextType | null>({} as CartContextType);
@@ -59,6 +60,16 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     return count
   }
 
+  const getTotal =  () => {
+    let total = 0
+    
+    cart.forEach(prod => {
+      total += prod.quantityToBuy * prod.price
+    })
+
+    return total
+  }
+
   const isInCart = (id: number) => {
     return cart.some(prod => prod.id === id)
   }
@@ -71,7 +82,8 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
       setCart,
       clear,
       isInCart,
-      removeItem
+      removeItem,
+      getTotal
     }}>
       {children}
     </CartContext.Provider>
