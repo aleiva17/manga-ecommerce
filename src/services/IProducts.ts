@@ -1,6 +1,6 @@
 
 interface IProducts {
-  id: number,
+  id: string,
   name: string,
   imgUrl: string,
   stock: number,

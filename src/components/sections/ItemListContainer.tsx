@@ -2,26 +2,32 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ItemCard from './ItemCard'
 import IDetailProducts from '../../services/IDetailProducts'
-import ProductsFetch from '../../services/ProductsFetch'
 import Loader from './Loader'
 
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { firestoreDb } from "../../services/firebase";
+import NotFound from '../pages/NotFound'
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState<IDetailProducts[] | undefined>();
   const { id } = useParams();
 
+  if (id && id !== "mangas" && id !== "novelas") {
+    return <NotFound />
+  }
+
   useEffect(() => {
     setProducts(undefined)
-    if (id === undefined) {
-      ProductsFetch.getProducts().then(prods => {
-        setProducts(prods)
-      })
-    }
-    else {
-      ProductsFetch.getProductsByCategory(capitalize(id)).then(prods => {
-        setProducts(prods)
-      })
-    }
+    const collectionRef = id ? 
+      query(collection(firestoreDb, 'products'), where('category', "==", capitalize(id))) :
+      collection(firestoreDb, 'products');
+
+    getDocs(collectionRef).then(res => {
+      const prods: any = res.docs.map(doc => {
+        return { id: doc.id, ...doc.data()}
+      });
+      setProducts(prods);
+    })
   }, [id])
   
   const capitalize = (word: string) => {

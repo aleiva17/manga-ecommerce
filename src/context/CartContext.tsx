@@ -11,8 +11,8 @@ type CartContextType = {
   addItem: (product: ICartProducts) => void
   getQuantity: () => number
   clear: () => void
-  isInCart: (id: number) => boolean
-  removeItem: (id: number) => void
+  isInCart: (id: string) => boolean
+  removeItem: (id: string) => void
   getTotal: () => number
 }
 
@@ -43,7 +43,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     }
   }
 
-  const removeItem = (id: number) => {
+  const removeItem = (id: string) => {
     const products = cart.filter(prod => prod.id !== id)
     setCart(products)
   }
@@ -70,7 +70,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     return total
   }
 
-  const isInCart = (id: number) => {
+  const isInCart = (id: string) => {
     return cart.some(prod => prod.id === id)
   }
 

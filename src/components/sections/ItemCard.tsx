@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 interface IItem {
-  id: number,
+  id: string,
   name: string,
   imgUrl: string,
   stock: number,

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import IDetailProducts from '../../services/IDetailProducts'
-import ProductsFetch from '../../services/ProductsFetch'
 import Loader from './Loader'
 import ItemDetail from './ItemDetail'
 import { useParams } from 'react-router-dom'
+
+import { firestoreDb } from "../../services/firebase";
+import { getDoc, doc } from "firebase/firestore";
 
 
 const ItemDetailContainer = () => {
@@ -11,10 +13,12 @@ const ItemDetailContainer = () => {
   const { id }= useParams()
 
   useEffect(() => {
-    id !== undefined && ProductsFetch.getProductsById(parseInt(id)).then(prod => {
-      setItem(prod)
+    if (id === undefined) return;
+    getDoc(doc(firestoreDb, 'products', id.toString())).then(res => {
+      const product: any = { id: id, ...res.data() }
+      setItem(product);
     })
-  }, [])
+  }, [id])
 
   return (
     <>
