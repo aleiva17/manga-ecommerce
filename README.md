@@ -9,7 +9,7 @@
     A manga e-commerce created with React and Typescript.
     <br />
     <br />
-    <a href="https://www.google.com">View Demo</a>
+    <a href="https://manga-store.netlify.app/">View Demo</a>
     ·
     <a href="https://github.com/aleiva17/manga-ecommerce/issues">Report Bug</a>
   </p>
