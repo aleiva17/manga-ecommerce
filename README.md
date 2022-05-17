@@ -28,6 +28,7 @@ This project was done with the following technologies, frameworks and libraries.
 * [Tailwind CSS](https://tailwindcss.com/)
 * [React.js](https://reactjs.org/)
 * [React Router](https://reactrouter.com/)
+* [React Hot Toast](https://react-hot-toast.com/)
 * [Heroicons](https://heroicons.com/)
 
 <!-- GETTING STARTED -->
@@ -65,6 +66,17 @@ It correctly bundles React in production mode and optimizes the build for the be
 #### `npm run preview`
 
 Runs the built app on a server to test its operation in your browser.
+
+<!-- CUSTOMIZATION -->
+## Components to customize
+
+* ItemCard
+* ItemDetail
+* Cart
+* CartWidget
+* NavBar
+* Header
+* Loader
 
 <!-- LICENSE -->
 ## License

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import { writeBatch, Timestamp, query, where, getDocs, collection, documentId, addDoc } from "firebase/firestore"
 import { firestoreDb } from "../../services/firebase/index"
+import Notify from "../../services/Notify"
 
 const Cart = () => {
   const cartContext = useContext(CartContext)
@@ -67,9 +68,11 @@ const Cart = () => {
       }).then(({ id }) => {
         batch.commit()
         setShowCode(true)
+        Notify.showBuySuccess();
         setOrderId(id)
       }).catch(error => {
-        setStockError(true)
+        setStockError(true);
+        Notify.showError();
       })
   }
 

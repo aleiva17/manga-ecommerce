@@ -5,6 +5,7 @@ import ItemDetailContainer from './components/sections/ItemDetailContainer'
 import Cart from './components/pages/Cart';
 import NotFound from './components/pages/NotFound';
 import { CartContextProvider } from "./context/CartContext";
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path='*' element={ <NotFound /> } />
         </Routes>
       </CartContextProvider>
+      <Toaster />
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { useState, useContext } from "react"
 import { Link } from "react-router-dom"
 import ItemCount from "./ItemCount"
+import Notify from "../../services/Notify"
 import IDetailProducts from "../../services/IDetailProducts"
 import CartContext from "../../context/CartContext"
 
@@ -13,6 +14,7 @@ const ItemDetail = ({ id, name, imgUrl, stock, price, category, author, descript
       id, name, imgUrl, stock, price, category, author, description
     }
     cartContext?.addItem({...product, quantityToBuy: quantity})
+    Notify.showAddSuccess();
     setQuantity(0);
   }
 
